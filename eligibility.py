@@ -4,14 +4,15 @@ import time
 import sys
 
 parser = argparse.ArgumentParser('eligibility')
-parser.add_argument('in_file', \
+parser.add_argument('infile', \
          help='the file containing the list of names to randomly sort')
 parser.add_argument('-s', metavar='spots', required=True, type=int, \
          help='the number of spots available on campus')
-parser.add_argument('out_file', \
+parser.add_argument('outfile', \
          help='the file to output the results to')
 parser.add_argument('-d', metavar='delay', required=False, type=float, \
-         default=0.5, help='the delay between selections in decimal seconds')
+         default=0.5, help='the delay between selections in decimal ' + \
+         'seconds (0.5 by default)')
 
 MCM_CREST = """
    `/:.                                            .:+.
@@ -113,6 +114,6 @@ if __name__ == '__main__':
     args = parser.parse_args();
 
     welcome(args.s)
-    oc, wl = run_eligibility(args.in_file, args.s)
+    oc, wl = run_eligibility(args.infile, args.s)
 
-    write_results(args.out_file, oc, wl)
+    write_results(args.outfile, oc, wl)
