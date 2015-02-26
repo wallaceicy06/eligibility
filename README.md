@@ -8,7 +8,8 @@ Description
 
 This program randomly allocates a specific number of students for housing
 and places the remaining number onto an ordered wait list. It is designed
-specifically to serve McMurtry College at Rice University.
+specifically to serve [McMurtry College](http://mcmurtry.rice.edu) at Rice
+University.
 
 Usage
 -----
