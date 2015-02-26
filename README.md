@@ -17,10 +17,10 @@ Usage
 Provide a plain text file of names, each separated by a line feed. Determine
 the number of spots for on-campus housing that you have, and execute
 
-    eligibility namefile outfile -s numspots
+    eligibility namefile outfile -s spots
 
 where `namefile` is your plain text file of names, `outfile` is the file you
-want the results written to, and `numspots` is the number of spots for on-campus
+want the results written to, and `spots` is the number of spots for on-campus
 housing.
 
 To adjust the seconds between random choices, use the `-d` flag and pass a
