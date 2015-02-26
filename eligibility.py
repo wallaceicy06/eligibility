@@ -57,49 +57,57 @@ def run_eligibility(names_file, spots, delay=0.5):
     on_campus = []
     waitlist = []
 
-    with open(names_file, 'r') as names_f:
-        lines = names_f.readlines();
-        names = map(lambda l: l.rstrip('\n'), lines);
+    try:
+        with open(names_file, 'r') as names_f:
+            lines = names_f.readlines();
+            names = map(lambda l: l.rstrip('\n'), lines);
 
-        if spots > len(names):
-            print >> sys.stderr, 'Number of spots greater than names list. ' + \
-                    'No need for eligibility jack.'
-            sys.exit(-1)
+            if spots > len(names):
+                print >> sys.stderr, 'Number of spots greater than names ' + \
+                        'list. No need for eligibility jack.'
+                sys.exit(-1)
 
-        print 'Receiving on campus housing:\n'
+            print 'Receiving on campus housing:\n'
 
-        num = 1
-        while names:
-            name = random.choice(names)
-            names.remove(name)
+            num = 1
+            while names:
+                name = random.choice(names)
+                names.remove(name)
 
-            time.sleep(delay)
+                time.sleep(delay)
 
-            if num > spots:
-                print str(num - spots) + ': ' + name
-                waitlist.append(name)
-            else:
-                print str(num) + ': ' + name
-                on_campus.append(name)
+                if num > spots:
+                    print str(num - spots) + ': ' + name
+                    waitlist.append(name)
+                else:
+                    print str(num) + ': ' + name
+                    on_campus.append(name)
 
-            if num == spots:
-                print '\nHousing Waitlist:\n'
+                if num == spots:
+                    print '\nHousing Waitlist:\n'
 
-            num += 1
+                num += 1
+    except IOError:
+        print >> sys.stderr, 'There was an error opening the specified' + \
+                ' file \'' + names_file +'\' for read.'
 
     return on_campus, waitlist
 
 def write_results(out_file, on_campus, waitlist):
-    with open(out_file, 'w') as out_f:
-        out_f.write('Receiving on campus housing:\n')
+    try:
+        with open(out_file, 'w') as out_f:
+            out_f.write('Receiving on campus housing:\n')
 
-        for name_i in xrange(len(on_campus)):
-            out_f.write(str(name_i + 1) + ': ' + on_campus[name_i] + '\n')
+            for name_i in xrange(len(on_campus)):
+                out_f.write(str(name_i + 1) + ': ' + on_campus[name_i] + '\n')
 
-        out_f.write('\nHousing Waitlist:\n')
+            out_f.write('\nHousing Waitlist:\n')
 
-        for name_i in xrange(len(waitlist)):
-            out_f.write(str(name_i + 1) + ': ' + waitlist[name_i] + '\n')
+            for name_i in xrange(len(waitlist)):
+                out_f.write(str(name_i + 1) + ': ' + waitlist[name_i] + '\n')
+    except IOError:
+        print >> sys.stderr, 'There was an error opening the specified' + \
+                ' file \'' + out_file +'\' for write.'
 
 if __name__ == '__main__':
     args = parser.parse_args();
