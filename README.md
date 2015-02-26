@@ -24,7 +24,7 @@ want the results written to, and `numspots` is the number of spots for on-campus
 housing.
 
 To adjust the seconds between random choices, use the `-d` flag and pass a
-decimal number.
+decimal number. By default, the delay is set at 0.5 seconds.
 
 A list of command line options is also provided by passing the `-h` flag.
 
