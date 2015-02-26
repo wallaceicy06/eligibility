@@ -28,6 +28,14 @@ decimal number.
 
 A list of command line options is also provided by passing the `-h` flag.
 
+Sample
+------
+
+A sample names file `sample_names.txt` is provided as part of this package. To
+try the program out of the box, execute
+
+    eligibility sample_names.txt sample_out.txt -s 3
+
 Credits
 -------
 
