@@ -114,6 +114,6 @@ if __name__ == '__main__':
     args = parser.parse_args();
 
     welcome(args.s)
-    oc, wl = run_eligibility(args.infile, args.s)
+    oc, wl = run_eligibility(args.infile, args.s, args.d)
 
     write_results(args.outfile, oc, wl)
