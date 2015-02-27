@@ -47,6 +47,17 @@ MCM_CREST = """
 """
 
 def welcome(spots):
+    """
+    Prints the McMurtry crest to stdout. Returns when the user confirms the
+    start of the program by typing any key.
+
+    Arguments:
+        spots - the number of spots that the program will allocate for housing
+
+    Returns:
+        none
+    """
+
     print MCM_CREST
     print 'Welcome to McMurtry College Eligibility Jack.'
     print 'This program will randomly allocate ' + str(spots) \
@@ -55,6 +66,22 @@ def welcome(spots):
     raw_input('')
 
 def run_eligibility(names_file, spots, delay=0.5):
+    """
+    Randomly sorts the provided names into two lists, one that is receiving
+    housing and another that is a housing wait list. The number of spots for
+    the former is determined by the variable passed to the function.
+
+    Arguments:
+        names_file - the path of the file containing a line separated list of
+            names
+        spots - the number of spots to allocate for housing
+        delay (optional) - the delay between successive picks, default is 0.5
+
+    Returns:
+        the list of students who were picked for on campus housing;
+        the list of students (in order) who were picked to be on the wait list
+    """
+
     on_campus = []
     waitlist = []
 
@@ -95,6 +122,20 @@ def run_eligibility(names_file, spots, delay=0.5):
     return on_campus, waitlist
 
 def write_results(out_file, on_campus, waitlist):
+    """
+    Writes the specified lists of students to a file in the same format that
+    run_eligibility prints to stdout.
+
+    Arguments:
+        out_file - the path of the file to write the results to
+        on_campus - the list of students selected for on-campus housing
+        waitlist - the list of students (in order) who were selected for the
+            wait list
+
+    Returns:
+        none
+    """
+
     try:
         with open(out_file, 'w') as out_f:
             out_f.write('Receiving on campus housing:\n')
@@ -110,6 +151,7 @@ def write_results(out_file, on_campus, waitlist):
         print >> sys.stderr, 'There was an error opening the specified' + \
                 ' file \'' + out_file +'\' for write.'
 
+# Main runner for the program.
 if __name__ == '__main__':
     args = parser.parse_args();
 
