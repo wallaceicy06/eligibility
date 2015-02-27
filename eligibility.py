@@ -6,13 +6,13 @@ import sys
 parser = argparse.ArgumentParser('eligibility')
 parser.add_argument('infile', \
          help='the file containing the list of names to randomly sort')
-parser.add_argument('-s', metavar='spots', required=True, type=int, \
+parser.add_argument('-s', '--spots', metavar='num', required=True, type=int, \
          help='the number of spots available on campus')
 parser.add_argument('outfile', \
          help='the file to output the results to')
-parser.add_argument('-d', metavar='delay', required=False, type=float, \
-         default=0.5, help='the delay between selections in decimal ' + \
-         'seconds (0.5 by default)')
+parser.add_argument('-d', '--delay', metavar='seconds', required=False, \
+         type=float, default=0.5, help='the delay between selections in '
+         'decimal seconds (0.5 by default)')
 
 MCM_CREST = """
    `/:.                                            .:+.
@@ -113,7 +113,7 @@ def write_results(out_file, on_campus, waitlist):
 if __name__ == '__main__':
     args = parser.parse_args();
 
-    welcome(args.s)
-    oc, wl = run_eligibility(args.infile, args.s, args.d)
+    welcome(args.spots)
+    oc, wl = run_eligibility(args.infile, args.spots, args.delay)
 
     write_results(args.outfile, oc, wl)
